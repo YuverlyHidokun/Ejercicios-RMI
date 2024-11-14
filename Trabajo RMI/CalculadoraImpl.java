@@ -27,4 +27,5 @@ public class CalculadoraImpl extends UnicastRemoteObject implements Calculadora 
         if (b == 0) throw new ArithmeticException("No se puede dividir por cero");
         return a / b;
     }
+
 }
