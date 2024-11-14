@@ -30,15 +30,25 @@ public class Cliente {
                 double b = scanner.nextDouble();
 
                 double resultado = 0;
-                switch (operacion) {
-                    case 1 -> resultado = calculadora.sumar(a, b);
-                    case 2 -> resultado = calculadora.restar(a, b);
-                    case 3 -> resultado = calculadora.multiplicar(a, b);
-                    case 4 -> resultado = calculadora.dividir(a, b);
-                    default -> System.out.println("Operación no válida");
-                }
+                try {
+                    switch (operacion) {
+                        case 1 -> resultado = calculadora.sumar(a, b);
+                        case 2 -> resultado = calculadora.restar(a, b);
+                        case 3 -> resultado = calculadora.multiplicar(a, b);
+                        case 4 -> {
+                            if (b == 0) {
+                                System.out.println("Error: No se puede dividir por cero");
+                                continue;
+                            }
+                            resultado = calculadora.dividir(a, b);
+                        }
+                        default -> System.out.println("Operación no válida");
+                    }
 
-                System.out.println("Resultado: " + resultado);
+                    System.out.println("Resultado: " + resultado);
+                } catch (ArithmeticException e) {
+                    System.out.println("Error en la operación: " + e.getMessage());
+                }
             }
 
         } catch (Exception e) {
